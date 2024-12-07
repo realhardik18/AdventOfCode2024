@@ -38,7 +38,7 @@ for index,command in enumerate(data,start=1):
     outputs=[int(evaluate_two(x)) for x in outputs]        
     if command[0] in outputs:        
         summation+=command[0]
-    print(index)
+    print(f'{index}/850',str(round((index/850)*100,2))+'%')
 print(summation)
                            
                                                     
