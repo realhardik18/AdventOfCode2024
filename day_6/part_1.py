@@ -92,16 +92,19 @@ while not exited:
 
 #print(exited)
 covered_coordinates=set()
+total_pts=0
 for index,coordinate in enumerate(guard_coordinates[:-1]):
     if guard_coordinates[index][0]==guard_coordinates[index+1][0]:
         thresholds=[guard_coordinates[index][1],guard_coordinates[index+1][1]]
         for y in range(min(thresholds),max(thresholds)+1):
             covered_coordinates.add((guard_coordinates[index][0],y))
+            total_pts+=1
     else:
         thresholds=[guard_coordinates[index][0],guard_coordinates[index+1][0]]
         for x in range(min(thresholds),max(thresholds)+1):
             covered_coordinates.add((x,guard_coordinates[index][1]))        
+            total_pts+=1
 
-print(len(covered_coordinates))
+print(total_pts)
 
 
