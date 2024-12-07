@@ -3,6 +3,8 @@ def evaluate(string):
     exp=[]
     tn=''
     total=None    
+    if '+' not in string and '*' not in string:
+        return string
     for s in string:
         if s=='+':
             if total==None:    
@@ -22,16 +24,13 @@ def evaluate(string):
             tn=''            
         else:
             tn+=s        
-    total=eval(f'total{exp[-1]}{tn}')
-    print(f'hiiiiiiiiii{len(exp)}')
-    return total
+    total=eval(f'total{exp[-1]}{tn}')    
+    return int(total)
 
 def evaluate_two(string):
-    if '|' in string:
-        data=[]
-        exp=[]
-        tn=''
-        total=None
+    if '|' in string:        
+        data=[]        
+        tn=''        
         for s in string:
             if s=='+':
                 data.append(tn)
@@ -48,14 +47,11 @@ def evaluate_two(string):
             else:
                 tn+=s
         data.append(tn)
-        conc_ind=data.index('|')
-        simplified=data[conc_ind-1]+data[conc_ind+1]
-        m=''.join(simplified)
-        #print(m)    
-        prev=str(evaluate(data[:conc_ind]))+str(data[conc_ind+1])                
-        print(evaluate(str(prev)+''.join((data[conc_ind+2:]))))
-    else:
-        print(string,'@')
+        conc_ind=data.index('|')        
+        #print(evaluate(''.join(data[:conc_ind])))
+        simplified=str(evaluate(''.join(data[:conc_ind])))+data[conc_ind+1]
+        return evaluate(simplified+''.join(data[conc_ind+2:]))
+    else:    
         return evaluate(string)
-print(evaluate_two('8|6'))
-#['81*40*27', '81*40+27', '81+40*27', '81+40+27']
+
+print(evaluate_two('4|4|4'))

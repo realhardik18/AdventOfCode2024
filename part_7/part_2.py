@@ -24,7 +24,7 @@ for index,command in enumerate(data,start=1):
     command[1]=list(map(int,command[1].lstrip().split(' ')))    
     ops=generate_combinations(len(command[1])-1)
     outputs=[]
-    for op in ops:
+    for op in ops:        
         op+='$'
         s=''
         for i,j in zip(command[1],op):
@@ -33,9 +33,12 @@ for index,command in enumerate(data,start=1):
         for i in s[:-1]:
             total
         outputs.append((s[:-1]))
+        #print(outputs)
     
-    outputs=[x for x in outputs]        
-    print(outputs)
+    outputs=[int(evaluate_two(x)) for x in outputs]        
+    if command[0] in outputs:        
+        summation+=command[0]
+    print(index)
 print(summation)
                            
                                                     
