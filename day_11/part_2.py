@@ -1,20 +1,40 @@
-from helpers import split_number
+from helpers import operate
 
 with open('input.txt','r') as file:
     data=list(map(int,file.read().split(' ')))
 
-blinks=75
-outputs=[data]
-for _ in range(blinks):
-    f=[]
-    for num in outputs[-1]:
-        if num==0:
-            f.append(1)
-        elif len(str(num))%2==0:
-            f.extend(split_number(num))
-        else:
-            f.extend([num*2024])
-    print(len(f),_)
-    outputs.append(f)
+blinks=6
+d=dict()
 
-print(len(outputs[-1]))
+for x in data:
+    d[x]=1
+for _ in range(blinks):    
+    for num in list(d):        
+        count=d[num]   
+        d.pop(num)
+        y=operate(num)
+        if type(y)!=int:
+            for number in y:
+                if number not in list(d):
+                    d[number]=1
+                else:
+                    d[number]+=count
+        else:
+            if y not in list(d):
+                d[y]=1
+            else:
+                d[y]+=1
+    print(list(filter(lambda x:d[x]>0,d)))
+s=0
+for i in list(d):
+    s=d[i]
+
+            
+                
+
+
+
+
+
+
+
