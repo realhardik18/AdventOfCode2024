@@ -30,4 +30,3 @@ for row in data:
         c[determine_quadrant(size_x,size_y,position)-1]+=1
 
 print(eval('*'.join(list(map(str,c)))))
-
