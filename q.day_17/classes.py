@@ -32,7 +32,7 @@ class Register:
         self.b=int(self.b)^int(self.c)
     def out(self,x):
         v=int((self.compute_operand(x)%8))
-        print(v)
+        #print(v)
         return v
     def bdv(self,x):
         numerator=self.a
